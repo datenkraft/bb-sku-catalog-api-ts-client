@@ -52,6 +52,6 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@datenkraft/bb-base-api-ts-client": "file:../bb-base-api-ts-client"
+    "@datenkraft/bb-base-api-ts-client": "^1.0.0"
   }
 }
