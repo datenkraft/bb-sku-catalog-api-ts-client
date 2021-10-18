@@ -48,3 +48,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+# NPM
+.npm/
+.node_repl_history
+.npmrc
+.config
+
+# Jest
+coverage/
+
