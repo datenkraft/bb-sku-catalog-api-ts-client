@@ -3,22 +3,51 @@
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
 import type { newSkuGroup } from '../models/newSkuGroup';
-import type { skuGroup } from '../models/skuGroup';
+import type { skuGroupCollection } from '../models/skuGroupCollection';
+import type { skuGroupResource } from '../models/skuGroupResource';
 import { request as __request } from '../core/request';
 
 export class SkuGroupService {
+
+    /**
+     * Query sku-groups by skuCodes
+     * Query sku-groups by skuCodes
+     * @param filterSkuCodes skuCode filter
+     * @returns skuGroupCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getSkuGroupCollection(
+        filterSkuCodes: string,
+    ): Promise<skuGroupCollection | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/sku-group`,
+            query: {
+                'filter[skuCodes]': filterSkuCodes,
+            },
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
 
     /**
      * Add a SKU Group
      * Add a SKU Group
      * @param requestBody
      * @returns errorResponse Unexpected error
-     * @returns skuGroup Created
+     * @returns skuGroupResource Created
      * @throws ApiError
      */
     public static async postSkuGroup(
         requestBody: newSkuGroup,
-    ): Promise<errorResponse | skuGroup> {
+    ): Promise<errorResponse | skuGroupResource> {
         const result = await __request({
             method: 'POST',
             path: `/sku-group`,
@@ -37,13 +66,13 @@ export class SkuGroupService {
      * Get a SKU Group by skuGroupId
      * Get a SKU Group by skuGroupId
      * @param skuGroupId SKU Group Id
-     * @returns skuGroup OK
+     * @returns skuGroupResource OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async getSkuGroup(
         skuGroupId: string,
-    ): Promise<skuGroup | errorResponse> {
+    ): Promise<skuGroupResource | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/sku-group/${skuGroupId}`,

@@ -15,7 +15,8 @@ export type { getAuthPermissionCollectionResponse } from './models/getAuthPermis
 export type { newSkuGroup } from './models/newSkuGroup';
 export type { postSkuConflictErrorResponse } from './models/postSkuConflictErrorResponse';
 export type { sku } from './models/sku';
-export type { skuGroup } from './models/skuGroup';
+export type { skuGroupCollection } from './models/skuGroupCollection';
+export type { skuGroupResource } from './models/skuGroupResource';
 
 export { AuthRoleIdentityService } from './services/AuthRoleIdentityService';
 export { AuthRoleService } from './services/AuthRoleService';

@@ -7,7 +7,7 @@ import type { newSkuGroup } from './newSkuGroup';
 /**
  * SKU Group
  */
-export type skuGroup = ({
+export type skuGroupResource = ({
     /**
      * SKU Group Id
      */
