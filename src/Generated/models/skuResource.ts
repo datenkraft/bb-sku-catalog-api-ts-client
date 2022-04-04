@@ -5,7 +5,7 @@
 /**
  * Class SkuResource
  */
-export type sku = {
+export type skuResource = {
     /**
      * SKU Code
      */

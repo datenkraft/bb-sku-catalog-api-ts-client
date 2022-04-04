@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import type { error } from './error';
-import type { sku } from './sku';
+import type { skuResource } from './skuResource';
 
 export type postSkuConflictErrorResponse = {
     /**
@@ -17,7 +17,7 @@ export type postSkuConflictErrorResponse = {
             /**
              * SKUs
              */
-            skus?: Array<sku>,
+            skus?: Array<skuResource>,
         },
     })>;
 }

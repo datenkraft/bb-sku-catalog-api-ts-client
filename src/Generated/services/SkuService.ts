@@ -2,22 +2,51 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
-import type { sku } from '../models/sku';
+import type { skuResource } from '../models/skuResource';
+import type { skuResourceCollection } from '../models/skuResourceCollection';
 import { request as __request } from '../core/request';
 
 export class SkuService {
+
+    /**
+     * Query skus by skuCodes
+     * Query skus by skuCodes
+     * @param filterSkuCodes skuCodes filter
+     * @returns skuResourceCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getSkuCollection(
+        filterSkuCodes: string,
+    ): Promise<skuResourceCollection | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/sku`,
+            query: {
+                'filter[skuCodes]': filterSkuCodes,
+            },
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
 
     /**
      * Add a SKU
      * Add a SKU
      * @param requestBody
      * @returns errorResponse Unexpected error
-     * @returns sku Created
+     * @returns skuResource Created
      * @throws ApiError
      */
     public static async postSku(
-        requestBody: sku,
-    ): Promise<errorResponse | sku> {
+        requestBody: skuResource,
+    ): Promise<errorResponse | skuResource> {
         const result = await __request({
             method: 'POST',
             path: `/sku`,
@@ -38,13 +67,13 @@ export class SkuService {
      * Get a SKU by skuCode
      * Get a SKU by skuCode
      * @param skuCode SKU Code
-     * @returns sku OK
+     * @returns skuResource OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async getSku(
         skuCode: string,
-    ): Promise<sku | errorResponse> {
+    ): Promise<skuResource | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/sku/${skuCode}`,

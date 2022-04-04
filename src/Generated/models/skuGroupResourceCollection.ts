@@ -4,4 +4,7 @@
 
 import type { skuGroupResource } from './skuGroupResource';
 
-export type skuGroupCollection = Array<skuGroupResource>;
+/**
+ * Class SkuGroupResourceCollection
+ */
+export type skuGroupResourceCollection = Array<skuGroupResource>;

@@ -14,9 +14,10 @@ export type { errorResponse } from './models/errorResponse';
 export type { getAuthPermissionCollectionResponse } from './models/getAuthPermissionCollectionResponse';
 export type { newSkuGroup } from './models/newSkuGroup';
 export type { postSkuConflictErrorResponse } from './models/postSkuConflictErrorResponse';
-export type { sku } from './models/sku';
-export type { skuGroupCollection } from './models/skuGroupCollection';
 export type { skuGroupResource } from './models/skuGroupResource';
+export type { skuGroupResourceCollection } from './models/skuGroupResourceCollection';
+export type { skuResource } from './models/skuResource';
+export type { skuResourceCollection } from './models/skuResourceCollection';
 
 export { AuthRoleIdentityService } from './services/AuthRoleIdentityService';
 export { AuthRoleService } from './services/AuthRoleService';

@@ -3,28 +3,28 @@
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
 import type { newSkuGroup } from '../models/newSkuGroup';
-import type { skuGroupCollection } from '../models/skuGroupCollection';
 import type { skuGroupResource } from '../models/skuGroupResource';
+import type { skuGroupResourceCollection } from '../models/skuGroupResourceCollection';
 import { request as __request } from '../core/request';
 
 export class SkuGroupService {
 
     /**
-     * Query sku-groups by skuCodes
-     * Query sku-groups by skuCodes
-     * @param filterSkuCodes skuCode filter
-     * @returns skuGroupCollection OK
+     * Query sku-groups by skuGroupIds
+     * Query sku-groups by skuGroupIds
+     * @param filterSkuGroupIds skuGroupIds filter
+     * @returns skuGroupResourceCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async getSkuGroupCollection(
-        filterSkuCodes: string,
-    ): Promise<skuGroupCollection | errorResponse> {
+        filterSkuGroupIds: string,
+    ): Promise<skuGroupResourceCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/sku-group`,
             query: {
-                'filter[skuCodes]': filterSkuCodes,
+                'filter[skuGroupIds]': filterSkuGroupIds,
             },
             errors: {
                 400: `Bad Request`,
