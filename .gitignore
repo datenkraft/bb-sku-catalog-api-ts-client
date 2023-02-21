@@ -21,7 +21,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -56,4 +55,3 @@ Thumbs.db
 
 # Jest
 coverage/
-
