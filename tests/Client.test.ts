@@ -18,8 +18,8 @@ describe.skip('Client Test (local)', () => {
             expect(sku).toEqual({
               skuCode: 'freshdesk-resolved_tickets',
               skuGroupId: '54b56814-b503-435c-9bbb-5194de0886ec',
-              name: 'Freshdesk - resolved tickets',
-              unit: 'Ticket',
+              name: 'Geschlossene Support-Tickets',
+              unit: null,
             });
             done();
           })
@@ -54,8 +54,8 @@ describe('Client Test (staging)', () => {
             expect(sku).toEqual({
               skuCode: 'freshdesk-resolved_tickets',
               skuGroupId: '54b56814-b503-435c-9bbb-5194de0886ec',
-              name: 'Freshdesk - resolved tickets',
-              unit: 'Ticket',
+              name: 'Geschlossene Support-Tickets',
+              unit: null,
             });
             done();
           })
