@@ -5,7 +5,7 @@ import { SkuCatalogApiClient } from '../dist';
 describe.skip('Client Test (local)', () => {
   test('Initialize and use the generated Client', (done) => {
     const configOptions: ConfigOptions = {
-      clientId: process.env.DEV_CLIENT_ID_LOCAL ?? '',
+      clientId: process.env.DEV_CLIENT_ID ?? '',
       clientSecret: process.env.DEV_CLIENT_SECRET_LOCAL ?? '',
     };
 
@@ -36,7 +36,7 @@ describe.skip('Client Test (local)', () => {
 describe('Client Test (staging)', () => {
   test('Initialize and use the generated Client', (done) => {
     const configOptions: ConfigOptions = {
-      clientId: process.env.DEV_CLIENT_ID_STAGING ?? '',
+      clientId: process.env.DEV_CLIENT_ID ?? '',
       clientSecret: process.env.DEV_CLIENT_SECRET_STAGING ?? '',
       oAuthTokenHost:
         'https://authentication-api.staging.backbone.datenkraft.info',
