@@ -1,5 +1,5 @@
 {
-  "name": "@datenkraft/bb-x-sku-catalog-api-ts-client",
+  "name": "@datenkraft/bb-sku-catalog-api-ts-client",
   "homepage": "https://bitbucket.org/datenkraft/bb-sku-catalog-api-ts-client#readme",
   "version": "1.1.0",
   "description": "The SKU Catalog API TS Client enables you to work with the SKU Catalog API",
