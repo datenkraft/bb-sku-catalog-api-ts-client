@@ -18,7 +18,7 @@ export class SkuGroupService {
      * @throws ApiError
      */
     public static async getSkuGroupCollection(
-        filterSkuGroupIds: string,
+        filterSkuGroupIds?: string,
     ): Promise<skuGroupResourceCollection | errorResponse> {
         const result = await __request({
             method: 'GET',

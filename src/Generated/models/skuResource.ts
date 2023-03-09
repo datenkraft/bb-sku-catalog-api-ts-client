@@ -2,9 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Class SkuResource
- */
 export type skuResource = {
     /**
      * SKU Code

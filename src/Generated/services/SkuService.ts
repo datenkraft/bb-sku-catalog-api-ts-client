@@ -10,20 +10,23 @@ export class SkuService {
 
     /**
      * Query skus by skuCodes
-     * Query skus by skuCodes
+     * Query skus by skuCodes or skuGroupIds.
      * @param filterSkuCodes skuCodes filter
+     * @param filterSkuGroupIds skuGroupIds filter
      * @returns skuResourceCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async getSkuCollection(
-        filterSkuCodes: string,
+        filterSkuCodes?: string,
+        filterSkuGroupIds?: string,
     ): Promise<skuResourceCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/sku`,
             query: {
                 'filter[skuCodes]': filterSkuCodes,
+                'filter[skuGroupIds]': filterSkuGroupIds,
             },
             errors: {
                 400: `Bad Request`,
