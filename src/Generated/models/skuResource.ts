@@ -2,7 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { patchSkuResource } from './patchSkuResource';
-import type { postSkuResource } from './postSkuResource';
+import type { baseSkuResource } from './baseSkuResource';
+import type { patchSkuUsageAdditionalData } from './patchSkuUsageAdditionalData';
+import type { postSkuUsageAdditionalData } from './postSkuUsageAdditionalData';
 
-export type skuResource = (postSkuResource & patchSkuResource);
+export type skuResource = (baseSkuResource & postSkuUsageAdditionalData & patchSkuUsageAdditionalData);
