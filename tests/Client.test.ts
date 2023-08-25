@@ -20,6 +20,7 @@ describe.skip('Client Test (local)', () => {
               skuGroupId: '54b56814-b503-435c-9bbb-5194de0886ec',
               name: 'Geschlossene Support-Tickets',
               unit: null,
+              active: true,
             });
             done();
           })
@@ -56,6 +57,7 @@ describe('Client Test (staging)', () => {
               skuGroupId: '54b56814-b503-435c-9bbb-5194de0886ec',
               name: 'Geschlossene Support-Tickets',
               unit: null,
+              active: true,
             });
             done();
           })
