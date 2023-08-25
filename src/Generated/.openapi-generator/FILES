@@ -32,10 +32,10 @@ models/information.ts
 models/model-error.ts
 models/new-auth-role-resource.ts
 models/new-sku-group.ts
-models/patch-sku-resource-all-of.ts
 models/patch-sku-resource.ts
-models/post-sku-resource-all-of.ts
+models/patch-sku-usage-additional-data.ts
 models/post-sku-resource.ts
+models/post-sku-usage-additional-data.ts
 models/sku-group-resource-all-of.ts
 models/sku-group-resource.ts
 models/sku-resource.ts

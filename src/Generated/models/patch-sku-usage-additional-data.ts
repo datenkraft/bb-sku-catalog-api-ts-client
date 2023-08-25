@@ -17,13 +17,13 @@
 /**
  * 
  * @export
- * @interface PatchSkuResourceAllOf
+ * @interface PatchSkuUsageAdditionalData
  */
-export interface PatchSkuResourceAllOf {
+export interface PatchSkuUsageAdditionalData {
     /**
      * Active
      * @type {boolean}
-     * @memberof PatchSkuResourceAllOf
+     * @memberof PatchSkuUsageAdditionalData
      */
     'active'?: boolean;
 }
