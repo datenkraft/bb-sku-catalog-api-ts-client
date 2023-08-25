@@ -18,12 +18,12 @@
 import { BaseSkuResource } from './base-sku-resource';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PatchSkuResourceAllOf } from './patch-sku-resource-all-of';
+import { PatchSkuUsageAdditionalData } from './patch-sku-usage-additional-data';
 
 /**
  * @type PatchSkuResource
  * @export
  */
-export type PatchSkuResource = BaseSkuResource & PatchSkuResourceAllOf;
+export type PatchSkuResource = BaseSkuResource & PatchSkuUsageAdditionalData;
 
 

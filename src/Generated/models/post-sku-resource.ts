@@ -18,12 +18,12 @@
 import { BaseSkuResource } from './base-sku-resource';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostSkuResourceAllOf } from './post-sku-resource-all-of';
+import { PostSkuUsageAdditionalData } from './post-sku-usage-additional-data';
 
 /**
  * @type PostSkuResource
  * @export
  */
-export type PostSkuResource = BaseSkuResource & PostSkuResourceAllOf;
+export type PostSkuResource = BaseSkuResource & PostSkuUsageAdditionalData;
 
 

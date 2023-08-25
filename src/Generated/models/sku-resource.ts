@@ -15,15 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PatchSkuResource } from './patch-sku-resource';
+import { BaseSkuResource } from './base-sku-resource';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostSkuResource } from './post-sku-resource';
+import { PatchSkuUsageAdditionalData } from './patch-sku-usage-additional-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PostSkuUsageAdditionalData } from './post-sku-usage-additional-data';
 
 /**
  * @type SkuResource
  * @export
  */
-export type SkuResource = PatchSkuResource & PostSkuResource;
+export type SkuResource = BaseSkuResource & PatchSkuUsageAdditionalData & PostSkuUsageAdditionalData;
 
 

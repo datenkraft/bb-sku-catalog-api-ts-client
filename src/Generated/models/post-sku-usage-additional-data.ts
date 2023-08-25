@@ -17,13 +17,13 @@
 /**
  * 
  * @export
- * @interface PostSkuResourceAllOf
+ * @interface PostSkuUsageAdditionalData
  */
-export interface PostSkuResourceAllOf {
+export interface PostSkuUsageAdditionalData {
     /**
      * SKU Code
      * @type {string}
-     * @memberof PostSkuResourceAllOf
+     * @memberof PostSkuUsageAdditionalData
      */
     'skuCode'?: string;
 }
