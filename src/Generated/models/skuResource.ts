@@ -2,21 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type skuResource = {
-    /**
-     * SKU Code
-     */
-    skuCode: string;
-    /**
-     * SKU Group Id
-     */
-    skuGroupId: string;
-    /**
-     * Name
-     */
-    name: string;
-    /**
-     * Unit
-     */
-    unit?: string | null;
-}
+import type { patchSkuResource } from './patchSkuResource';
+import type { postSkuResource } from './postSkuResource';
+
+export type skuResource = (postSkuResource & patchSkuResource);

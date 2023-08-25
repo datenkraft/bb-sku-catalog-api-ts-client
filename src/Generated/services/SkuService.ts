@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
+import type { patchSkuResource } from '../models/patchSkuResource';
+import type { postSkuResource } from '../models/postSkuResource';
 import type { skuResource } from '../models/skuResource';
 import type { skuResourceCollection } from '../models/skuResourceCollection';
 import { request as __request } from '../core/request';
@@ -9,17 +11,19 @@ import { request as __request } from '../core/request';
 export class SkuService {
 
     /**
-     * Query skus by skuCodes
-     * Query skus by skuCodes or skuGroupIds.
+     * Query skus
+     * Query skus
      * @param filterSkuCodes skuCodes filter
      * @param filterSkuGroupIds skuGroupIds filter
+     * @param filterActive active filter
      * @returns skuResourceCollection OK
-     * @returns errorResponse Unexpected error
+     * @returns errorResponse Unexpected Error
      * @throws ApiError
      */
     public static async getSkuCollection(
         filterSkuCodes?: string,
         filterSkuGroupIds?: string,
+        filterActive?: boolean,
     ): Promise<skuResourceCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -27,13 +31,13 @@ export class SkuService {
             query: {
                 'filter[skuCodes]': filterSkuCodes,
                 'filter[skuGroupIds]': filterSkuGroupIds,
+                'filter[active]': filterActive,
             },
             errors: {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                404: `Not Found`,
-                500: `Server error`,
+                500: `Server Error`,
             },
         });
         return result.body;
@@ -43,12 +47,12 @@ export class SkuService {
      * Add a SKU
      * Add a SKU
      * @param requestBody
-     * @returns errorResponse Unexpected error
+     * @returns errorResponse Unexpected Error
      * @returns skuResource Created
      * @throws ApiError
      */
     public static async postSku(
-        requestBody: skuResource,
+        requestBody: postSkuResource,
     ): Promise<errorResponse | skuResource> {
         const result = await __request({
             method: 'POST',
@@ -58,9 +62,10 @@ export class SkuService {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
+                404: `Not Found`,
                 409: `Conflict`,
                 422: `Unprocessable Entity`,
-                500: `Server error`,
+                500: `Server Error`,
             },
         });
         return result.body;
@@ -71,7 +76,7 @@ export class SkuService {
      * Get a SKU by skuCode
      * @param skuCode SKU Code
      * @returns skuResource OK
-     * @returns errorResponse Unexpected error
+     * @returns errorResponse Unexpected Error
      * @throws ApiError
      */
     public static async getSku(
@@ -85,7 +90,36 @@ export class SkuService {
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
-                500: `Server error`,
+                500: `Server Error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Update one or more fields of a SKU
+     * Update one or more fields of a SKU
+     * @param skuCode SKU Code
+     * @param requestBody
+     * @returns skuResource OK
+     * @returns errorResponse Unexpected Error
+     * @throws ApiError
+     */
+    public static async patchSku(
+        skuCode: string,
+        requestBody: patchSkuResource,
+    ): Promise<skuResource | errorResponse> {
+        const result = await __request({
+            method: 'PATCH',
+            path: `/sku/${skuCode}`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Unprocessable Entity`,
+                422: `Not Found`,
+                500: `Server Error`,
             },
         });
         return result.body;
