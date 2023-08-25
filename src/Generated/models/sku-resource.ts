@@ -13,36 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { PatchSkuResource } from './patch-sku-resource';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PostSkuResource } from './post-sku-resource';
 
 /**
- * 
+ * @type SkuResource
  * @export
- * @interface SkuResource
  */
-export interface SkuResource {
-    /**
-     * SKU Code
-     * @type {string}
-     * @memberof SkuResource
-     */
-    'skuCode': string;
-    /**
-     * SKU Group Id
-     * @type {string}
-     * @memberof SkuResource
-     */
-    'skuGroupId': string;
-    /**
-     * Name
-     * @type {string}
-     * @memberof SkuResource
-     */
-    'name': string;
-    /**
-     * Unit
-     * @type {string}
-     * @memberof SkuResource
-     */
-    'unit'?: string | null;
-}
+export type SkuResource = PatchSkuResource & PostSkuResource;
+
 

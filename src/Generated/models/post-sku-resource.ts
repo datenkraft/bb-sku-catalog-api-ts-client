@@ -15,19 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PostSkuConflictErrorResponseErrorsInnerAllOfExtra } from './post-sku-conflict-error-response-errors-inner-all-of-extra';
+import { BaseSkuResource } from './base-sku-resource';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PostSkuResourceAllOf } from './post-sku-resource-all-of';
 
 /**
- * 
+ * @type PostSkuResource
  * @export
- * @interface PostSkuConflictErrorResponseErrorsInnerAllOf
  */
-export interface PostSkuConflictErrorResponseErrorsInnerAllOf {
-    /**
-     * 
-     * @type {PostSkuConflictErrorResponseErrorsInnerAllOfExtra}
-     * @memberof PostSkuConflictErrorResponseErrorsInnerAllOf
-     */
-    'extra'?: PostSkuConflictErrorResponseErrorsInnerAllOfExtra;
-}
+export type PostSkuResource = BaseSkuResource & PostSkuResourceAllOf;
+
 

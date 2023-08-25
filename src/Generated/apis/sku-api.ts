@@ -27,7 +27,9 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
-import { PostSkuConflictErrorResponse } from '../models';
+import { PatchSkuResource } from '../models';
+// @ts-ignore
+import { PostSkuResource } from '../models';
 // @ts-ignore
 import { SkuResource } from '../models';
 /**
@@ -79,14 +81,15 @@ export const SkuApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Query skus by skuCodes or skuGroupIds.
-         * @summary Query skus by skuCodes
+         * Query skus
+         * @summary Query skus
          * @param {string} [filterSkuCodes] skuCodes filter
          * @param {string} [filterSkuGroupIds] skuGroupIds filter
+         * @param {boolean} [filterActive] active filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSkuCollection: async (filterSkuCodes?: string, filterSkuGroupIds?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSkuCollection: async (filterSkuCodes?: string, filterSkuGroupIds?: string, filterActive?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/sku`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -115,6 +118,10 @@ export const SkuApiAxiosParamCreator = function (configuration?: Configuration) 
                 localVarQueryParameter['filter[skuGroupIds]'] = filterSkuGroupIds;
             }
 
+            if (filterActive !== undefined) {
+                localVarQueryParameter['filter[active]'] = filterActive;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -127,15 +134,63 @@ export const SkuApiAxiosParamCreator = function (configuration?: Configuration) 
             };
         },
         /**
-         * Add a SKU
-         * @summary Add a SKU
-         * @param {SkuResource} skuResource 
+         * Update one or more fields of a SKU
+         * @summary Update one or more fields of a SKU
+         * @param {string} skuCode SKU Code
+         * @param {PatchSkuResource} patchSkuResource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSku: async (skuResource: SkuResource, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'skuResource' is not null or undefined
-            assertParamExists('postSku', 'skuResource', skuResource)
+        patchSku: async (skuCode: string, patchSkuResource: PatchSkuResource, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'skuCode' is not null or undefined
+            assertParamExists('patchSku', 'skuCode', skuCode)
+            // verify required parameter 'patchSkuResource' is not null or undefined
+            assertParamExists('patchSku', 'patchSkuResource', patchSkuResource)
+            const localVarPath = `/sku/{skuCode}`
+                .replace(`{${"skuCode"}}`, encodeURIComponent(String(skuCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchSkuResource, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Add a SKU
+         * @summary Add a SKU
+         * @param {PostSkuResource} postSkuResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postSku: async (postSkuResource: PostSkuResource, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'postSkuResource' is not null or undefined
+            assertParamExists('postSku', 'postSkuResource', postSkuResource)
             const localVarPath = `/sku`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -163,7 +218,7 @@ export const SkuApiAxiosParamCreator = function (configuration?: Configuration) 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(skuResource, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(postSkuResource, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -192,26 +247,39 @@ export const SkuApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Query skus by skuCodes or skuGroupIds.
-         * @summary Query skus by skuCodes
+         * Query skus
+         * @summary Query skus
          * @param {string} [filterSkuCodes] skuCodes filter
          * @param {string} [filterSkuGroupIds] skuGroupIds filter
+         * @param {boolean} [filterActive] active filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SkuResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSkuCollection(filterSkuCodes, filterSkuGroupIds, options);
+        async getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, filterActive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SkuResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSkuCollection(filterSkuCodes, filterSkuGroupIds, filterActive, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Update one or more fields of a SKU
+         * @summary Update one or more fields of a SKU
+         * @param {string} skuCode SKU Code
+         * @param {PatchSkuResource} patchSkuResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchSku(skuCode: string, patchSkuResource: PatchSkuResource, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SkuResource>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchSku(skuCode, patchSkuResource, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Add a SKU
          * @summary Add a SKU
-         * @param {SkuResource} skuResource 
+         * @param {PostSkuResource} postSkuResource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSku(skuResource: SkuResource, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SkuResource>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSku(skuResource, options);
+        async postSku(postSkuResource: PostSkuResource, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SkuResource>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSku(postSkuResource, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -235,25 +303,37 @@ export const SkuApiFactory = function (configuration?: Configuration, basePath?:
             return localVarFp.getSku(skuCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Query skus by skuCodes or skuGroupIds.
-         * @summary Query skus by skuCodes
+         * Query skus
+         * @summary Query skus
          * @param {string} [filterSkuCodes] skuCodes filter
          * @param {string} [filterSkuGroupIds] skuGroupIds filter
+         * @param {boolean} [filterActive] active filter
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, options?: any): AxiosPromise<Array<SkuResource>> {
-            return localVarFp.getSkuCollection(filterSkuCodes, filterSkuGroupIds, options).then((request) => request(axios, basePath));
+        getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, filterActive?: boolean, options?: any): AxiosPromise<Array<SkuResource>> {
+            return localVarFp.getSkuCollection(filterSkuCodes, filterSkuGroupIds, filterActive, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update one or more fields of a SKU
+         * @summary Update one or more fields of a SKU
+         * @param {string} skuCode SKU Code
+         * @param {PatchSkuResource} patchSkuResource 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchSku(skuCode: string, patchSkuResource: PatchSkuResource, options?: any): AxiosPromise<SkuResource> {
+            return localVarFp.patchSku(skuCode, patchSkuResource, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a SKU
          * @summary Add a SKU
-         * @param {SkuResource} skuResource 
+         * @param {PostSkuResource} postSkuResource 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSku(skuResource: SkuResource, options?: any): AxiosPromise<SkuResource> {
-            return localVarFp.postSku(skuResource, options).then((request) => request(axios, basePath));
+        postSku(postSkuResource: PostSkuResource, options?: any): AxiosPromise<SkuResource> {
+            return localVarFp.postSku(postSkuResource, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -275,25 +355,37 @@ export interface SkuApiInterface {
     getSku(skuCode: string, options?: AxiosRequestConfig): AxiosPromise<SkuResource>;
 
     /**
-     * Query skus by skuCodes or skuGroupIds.
-     * @summary Query skus by skuCodes
+     * Query skus
+     * @summary Query skus
      * @param {string} [filterSkuCodes] skuCodes filter
      * @param {string} [filterSkuGroupIds] skuGroupIds filter
+     * @param {boolean} [filterActive] active filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SkuApiInterface
      */
-    getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, options?: AxiosRequestConfig): AxiosPromise<Array<SkuResource>>;
+    getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, filterActive?: boolean, options?: AxiosRequestConfig): AxiosPromise<Array<SkuResource>>;
+
+    /**
+     * Update one or more fields of a SKU
+     * @summary Update one or more fields of a SKU
+     * @param {string} skuCode SKU Code
+     * @param {PatchSkuResource} patchSkuResource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SkuApiInterface
+     */
+    patchSku(skuCode: string, patchSkuResource: PatchSkuResource, options?: AxiosRequestConfig): AxiosPromise<SkuResource>;
 
     /**
      * Add a SKU
      * @summary Add a SKU
-     * @param {SkuResource} skuResource 
+     * @param {PostSkuResource} postSkuResource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SkuApiInterface
      */
-    postSku(skuResource: SkuResource, options?: AxiosRequestConfig): AxiosPromise<SkuResource>;
+    postSku(postSkuResource: PostSkuResource, options?: AxiosRequestConfig): AxiosPromise<SkuResource>;
 
 }
 
@@ -317,27 +409,41 @@ export class SkuApi extends BaseAPI implements SkuApiInterface {
     }
 
     /**
-     * Query skus by skuCodes or skuGroupIds.
-     * @summary Query skus by skuCodes
+     * Query skus
+     * @summary Query skus
      * @param {string} [filterSkuCodes] skuCodes filter
      * @param {string} [filterSkuGroupIds] skuGroupIds filter
+     * @param {boolean} [filterActive] active filter
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SkuApi
      */
-    public getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, options?: AxiosRequestConfig) {
-        return SkuApiFp(this.configuration).getSkuCollection(filterSkuCodes, filterSkuGroupIds, options).then((request) => request(this.axios, this.basePath));
+    public getSkuCollection(filterSkuCodes?: string, filterSkuGroupIds?: string, filterActive?: boolean, options?: AxiosRequestConfig) {
+        return SkuApiFp(this.configuration).getSkuCollection(filterSkuCodes, filterSkuGroupIds, filterActive, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update one or more fields of a SKU
+     * @summary Update one or more fields of a SKU
+     * @param {string} skuCode SKU Code
+     * @param {PatchSkuResource} patchSkuResource 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SkuApi
+     */
+    public patchSku(skuCode: string, patchSkuResource: PatchSkuResource, options?: AxiosRequestConfig) {
+        return SkuApiFp(this.configuration).patchSku(skuCode, patchSkuResource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Add a SKU
      * @summary Add a SKU
-     * @param {SkuResource} skuResource 
+     * @param {PostSkuResource} postSkuResource 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SkuApi
      */
-    public postSku(skuResource: SkuResource, options?: AxiosRequestConfig) {
-        return SkuApiFp(this.configuration).postSku(skuResource, options).then((request) => request(this.axios, this.basePath));
+    public postSku(postSkuResource: PostSkuResource, options?: AxiosRequestConfig) {
+        return SkuApiFp(this.configuration).postSku(postSkuResource, options).then((request) => request(this.axios, this.basePath));
     }
 }

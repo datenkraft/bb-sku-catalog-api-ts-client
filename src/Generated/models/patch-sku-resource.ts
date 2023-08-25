@@ -15,19 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SkuResource } from './sku-resource';
+import { BaseSkuResource } from './base-sku-resource';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PatchSkuResourceAllOf } from './patch-sku-resource-all-of';
 
 /**
- * Extra
+ * @type PatchSkuResource
  * @export
- * @interface PostSkuConflictErrorResponseErrorsInnerAllOfExtra
  */
-export interface PostSkuConflictErrorResponseErrorsInnerAllOfExtra {
-    /**
-     * SKUs
-     * @type {Array<SkuResource>}
-     * @memberof PostSkuConflictErrorResponseErrorsInnerAllOfExtra
-     */
-    'skus'?: Array<SkuResource>;
-}
+export type PatchSkuResource = BaseSkuResource & PatchSkuResourceAllOf;
+
 

@@ -21,6 +21,7 @@ models/auth-permission-resource.ts
 models/auth-permission-role-resource.ts
 models/auth-role-identity-resource.ts
 models/auth-role-resource.ts
+models/base-sku-resource.ts
 models/collection-pagination.ts
 models/collection.ts
 models/error-references-inner.ts
@@ -31,10 +32,10 @@ models/information.ts
 models/model-error.ts
 models/new-auth-role-resource.ts
 models/new-sku-group.ts
-models/post-sku-conflict-error-response-errors-inner-all-of-extra.ts
-models/post-sku-conflict-error-response-errors-inner-all-of.ts
-models/post-sku-conflict-error-response-errors-inner.ts
-models/post-sku-conflict-error-response.ts
+models/patch-sku-resource-all-of.ts
+models/patch-sku-resource.ts
+models/post-sku-resource-all-of.ts
+models/post-sku-resource.ts
 models/sku-group-resource-all-of.ts
 models/sku-group-resource.ts
 models/sku-resource.ts
