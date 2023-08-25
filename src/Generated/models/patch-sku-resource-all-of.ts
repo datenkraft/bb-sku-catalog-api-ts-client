@@ -13,23 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ErrorReferencesInner } from './error-references-inner';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ModelError } from './model-error';
-// May contain unused imports in some cases
-// @ts-ignore
-import { PostSkuConflictErrorResponseErrorsInnerAllOf } from './post-sku-conflict-error-response-errors-inner-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { PostSkuConflictErrorResponseErrorsInnerAllOfExtra } from './post-sku-conflict-error-response-errors-inner-all-of-extra';
 
 /**
- * @type PostSkuConflictErrorResponseErrorsInner
+ * 
  * @export
+ * @interface PatchSkuResourceAllOf
  */
-export type PostSkuConflictErrorResponseErrorsInner = ModelError & PostSkuConflictErrorResponseErrorsInnerAllOf;
-
+export interface PatchSkuResourceAllOf {
+    /**
+     * Active
+     * @type {boolean}
+     * @memberof PatchSkuResourceAllOf
+     */
+    'active'?: boolean;
+}
 

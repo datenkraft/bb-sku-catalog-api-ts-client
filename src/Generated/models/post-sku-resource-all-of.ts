@@ -13,21 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { PostSkuConflictErrorResponseErrorsInner } from './post-sku-conflict-error-response-errors-inner';
 
 /**
  * 
  * @export
- * @interface PostSkuConflictErrorResponse
+ * @interface PostSkuResourceAllOf
  */
-export interface PostSkuConflictErrorResponse {
+export interface PostSkuResourceAllOf {
     /**
-     * errors
-     * @type {Array<PostSkuConflictErrorResponseErrorsInner>}
-     * @memberof PostSkuConflictErrorResponse
+     * SKU Code
+     * @type {string}
+     * @memberof PostSkuResourceAllOf
      */
-    'errors'?: Array<PostSkuConflictErrorResponseErrorsInner>;
+    'skuCode'?: string;
 }
 
