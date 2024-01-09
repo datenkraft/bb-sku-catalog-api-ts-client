@@ -24,7 +24,7 @@ import { SkuResource } from './sku-resource';
  */
 export interface SkuResourceCollectionAllOf {
     /**
-     * Class SkuResourceCollection
+     * SkuResourceCollection
      * @type {Array<SkuResource>}
      * @memberof SkuResourceCollectionAllOf
      */
